@@ -6,6 +6,7 @@
 #else
   #define MICRO_PLATFORM 0
   #define PC_PLATFORM 1
+  #define _CRT_SECURE_NO_WARNINGS 1
 #endif
 
 

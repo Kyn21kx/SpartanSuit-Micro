@@ -2,10 +2,7 @@
 
 #include "MicroUtils/Definitions.h"
 
-
-#if PC_PLATFORM
 #include <cstdint>
-#endif
 
 struct [[nodiscard]] Vector3 {
   union {
@@ -22,10 +19,10 @@ struct [[nodiscard]] Vector3 {
 
   static inline Vector3 One() { return Vector3{1, 1, 1}; }
 
-  void ToCString(char* buffer, uint32_t capacity);  
+  void ToCString(char* buffer, uint32_t capacity) const;  
   
-  void Print();
+  void Print() const;
 
-  float GetMagnitude();
+  float GetMagnitude() const;
   
 };
