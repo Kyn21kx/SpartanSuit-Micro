@@ -1,29 +1,26 @@
 #pragma once
 
 #include <cstdint>
-#include <random>
-
 
 #include "Definitions.h"
 
 #if PC_PLATFORM
 #include <cstdio>
-// We're probably in a computer, so, you know, just use FILE* instead of Print*
 using Print = FILE;
 #endif
 
-enum LogLevel : uint16_t {
+enum ELogLevel : uint16_t {
   Debug,
   Info,
   Warn,
-  Err
+  Error
 };
 
 class Logging {
 public:
   static void Begin(Print* output);
 
-  static void Log(const char* format, ...);
+  static void LogLevel(ELogLevel level, const char* format, ...);
   
 private:
   static Print* s_output;

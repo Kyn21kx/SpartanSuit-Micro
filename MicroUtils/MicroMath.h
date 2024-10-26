@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Definitions.h"
 #include <cmath>
 
-#ifdef _WIN32
+#if PC_PLATFORM
 #include <cstdint>
+
 #endif
 
 class MicroMath {  

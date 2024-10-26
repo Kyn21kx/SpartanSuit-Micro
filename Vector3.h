@@ -1,8 +1,9 @@
 #pragma once
 
-#include "MicroUtils/MicroMath.h"
+#include "MicroUtils/Definitions.h"
 
-#ifdef _WIN32
+
+#if PC_PLATFORM
 #include <cstdint>
 #endif
 
@@ -22,5 +23,9 @@ struct [[nodiscard]] Vector3 {
   static inline Vector3 One() { return Vector3{1, 1, 1}; }
 
   void ToCString(char* buffer, uint32_t capacity);  
+  
+  void Print();
+
+  float GetMagnitude();
   
 };

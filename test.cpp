@@ -1,19 +1,23 @@
+#include "MicroUtils/Logging.h"
 #include "MicroUtils/MicroStringUtils.h"
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include "Vector3.h"
 
 int main(int argc, char** argv) {
-  int16_t number = atoi(argv[1]);
-  
-  char line[200] = "The number you just entered is: ";  
+  Logging::Begin(stdout);
 
-  MicroStringUtils::Append(line, number, strlen(line), 200);
-
-  printf("%s\n", line);
+  Vector3 v;
   
+  v.x = atoi(argv[1]);
+  v.y = atoi(argv[2]);
+  v.z = atoi(argv[3]);
+  
+  v.Print();
+  
+  Logging::LogLevel(ELogLevel::Info,"Magnitude: %f\n",v.GetMagnitude());
   return 0;
 }
-
 
 
