@@ -20,27 +20,27 @@ void Logging::LogLevel(ELogLevel level, const char *format, ...) {
 
   switch (level) {
   case Info:
-    strncat(formatBuffer, "[Info] - ", MAX_LOG_BUFFER_SIZE);
+    strncat(formatBuffer, "[Info] - ", MAX_FORMAT_BUFFER_SIZE);
     break;
   case Debug:
-    strncat(formatBuffer, "[Debug] - ", MAX_LOG_BUFFER_SIZE);
+    strncat(formatBuffer, "[Debug] - ", MAX_FORMAT_BUFFER_SIZE);
     break;
   case Error:
-    strncat(formatBuffer, "[Error] ", MAX_LOG_BUFFER_SIZE);
+    strncat(formatBuffer, "[Error] ", MAX_FORMAT_BUFFER_SIZE);
     break;
   case Warn:
-    strncat(formatBuffer, "[Warn] - ", MAX_LOG_BUFFER_SIZE);
+    strncat(formatBuffer, "[Warn] - ", MAX_FORMAT_BUFFER_SIZE);
     break;
   }
 
-  strncat(formatBuffer, format, MAX_LOG_BUFFER_SIZE)
+  strncat(formatBuffer, format, MAX_LOG_BUFFER_SIZE);
 
 #if MICRO_PLATFORM
-      vsprintf(printBuffer, formatBuffer, args);
+  vsprintf(printBuffer, formatBuffer, args);
   s_output->print(printBuffer);
 #else
 
-      vfprintf(s_output, formatBuffer, args);
+  vfprintf(s_output, formatBuffer, args);
 
 #endif
   va_end(args);

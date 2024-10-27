@@ -2,9 +2,7 @@
 
 #include "Definitions.h"
 
-#if PC_PLATFORM
 #include <cstdint>
-#endif
 
 constexpr uint32_t MAX_INT16_BUFFER_SIZE = 6;
 

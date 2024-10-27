@@ -8,7 +8,6 @@ void MpuSensor::Initialize() {
 #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
   Fastwire::setup(400, true);
 #endif
-  Logging::InfoLine("Initializing MPU6050...");
   this->m_sensor.initialize();
 }
 

@@ -12,6 +12,18 @@
 /// @brief 3 * int16_t for each comp + 5 for the commas and parentheses
 constexpr uint32_t REQUIRED_BUFF_SIZE = (MAX_INT16_BUFFER_SIZE * 3) + 5;
 
+Vector3::Vector3(int16_t x, int16_t y, int16_t z) {
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
+Vector3::Vector3() {
+	this->x = 0;
+	this->y = 0;
+	this->z = 0;
+}
+
 void Vector3::ToCString(char* buffer, uint32_t capacity) const {
 	if (capacity < REQUIRED_BUFF_SIZE) {
 		Logging::LogLevel(ELogLevel::Error, "Required buffer size is %d, got %d instead!", REQUIRED_BUFF_SIZE, capacity);

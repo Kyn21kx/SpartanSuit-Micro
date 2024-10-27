@@ -1,20 +1,26 @@
-#include "Vector3.h"
-#include "MicroUtils/Logging.h"
-#include "MpuSensor.h"
+#include "src/Vector3.h"
+#include "src/MicroUtils/Logging.h"
+#include "src/MpuSensor.h"
 
 MpuSensor mpu;
 
 void setup() {
   Serial.begin(115200); // Initializate Serial wo work well at 8MHz/16MHz
+  Logging::Begin(&Serial);
+  
+  Logging::DebugLine("Initializing MPU6050");
   mpu.Initialize();
   /*Initialize device and check connection*/
   while (!mpu.TestConnection()) {
-    Serial.println("MPU6050 connection failed, please check wiring");
+    Logging::ErrorLine("MPU6050 connection failed, please check wiring");
     delay(500);
   }
-  Serial.println("MPU6050 connection successful");
+  Logging::InfoLine("MPU6050 connection successful");
   
   mpu.Calibrate();
+
+  Logging::DebugLine("Printing a vector just because");
+  mpu.GetAcceleration().Print();
 
   Serial.println("Waiting 5 seconds for good measure");
   delay(5000);
@@ -22,8 +28,12 @@ void setup() {
 
 void loop() {
   mpu.UpdateSensor();
-  char accelerationStr[100];
   const Vector3& acc = mpu.GetAcceleration();
-  acc.ToCString(accelerationStr, 100);
-  Logging::InfoLine("Acceleration readings: %s", accelerationStr);
+  Logging::LogLevel(ELogLevel::Info, "Acceleration: ");
+  acc.Print();
+  const Vector3& rot = mpu.GetRotation();
+  Logging::LogLevel(ELogLevel::Info, "Rotation: ");
+  rot.Print();
+  delay(100);
+  
 }

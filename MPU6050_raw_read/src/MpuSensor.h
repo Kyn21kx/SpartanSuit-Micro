@@ -31,9 +31,9 @@ public:
 
   void UpdateSensor();
 
-  [[nodiscard]] const Vector3& GetRotation() const;  
+  const Vector3& GetRotation() const;  
 
-  [[nodiscard]] const Vector3& GetAcceleration() const;
+  const Vector3& GetAcceleration() const;
   
 private:
   Vector3 m_rotation;

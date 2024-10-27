@@ -11,13 +11,13 @@ struct [[nodiscard]] Vector3 {
     };
   };
 
-  Vector3() = default;
+  Vector3();
 
   Vector3(int16_t x, int16_t y, int16_t z);
 
-  static inline Vector3 Zero() { return Vector3{0, 0, 0}; }
+  static inline Vector3 Zero() { return Vector3(0, 0, 0); }
 
-  static inline Vector3 One() { return Vector3{1, 1, 1}; }
+  static inline Vector3 One() { return Vector3(1, 1, 1); }
 
   void ToCString(char* buffer, uint32_t capacity) const;  
   
